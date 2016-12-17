@@ -1,0 +1,74 @@
+All of this was done in 16.04 ubuntu
+
+
+# MOCAP stuff 
+# mocap software running to read mocap positions check config directory for setting
+roslaunch mocap_optitrack mocap.launch 
+
+# x2 broadcast mocaps position over wifi 
+open project 5N_.ttp(there is a backup of this file too)
+go to motive and view and check data streaming, and change ip and select broadcast computer's address press enter to select
+
+# x3 read mocap positions  quad nd tags, some confis in "px4_mocap_config.yaml "
+# connect pixhawk ttyACM to usb_hub and tyUSB0 to the same hub
+roslaunch mavros_extras px4_mocap.launch 
+# needed by mavros to fake gps(for some reason it was already showing gps without running this)
+rosrun tf_stamped stamped_tf 
+# visualize all these in rviz nd check what is world map
+
+
+
+
+
+
+# 
+# Kalibr, april, flea3 stuff
+# run mavros to capture px4 data pose data 
+# run flea to run camera
+#     read apriltags data
+# y2 to run kalibr transformation to get apriltag wrt px4 center
+#
+# camera_base used older one from 14.04, flea3 installed from source use flycap2 to see if that can get the image
+# I had to change usb port 3 times
+source ./softwares/flea3/flea_ros/devel/setup.bash 
+roslaunch flea3 single_node.launch device:=15291221
+
+# goto https://github.com/personalrobotics/apriltags and do as they say
+# compile from scratch because makefile downloads some stuff from online that doesn't work otherwise
+# something changed about downloading from source now it requires a different folder to be cloned (https://github.com/personalrobotics/apriltags-cpp) 
+#  details given here https://github.com/personalrobotics/apriltags/issues/28
+# installed libcgal-qt5-dev was giving some error otherwise
+# pkg_search_module(OPENCV REQUIRED opencv>=2.3 opencv-2.3.1 opencv-3.1.0-dev)
+#gedit ../src/Geometry.cpp and #include <map>
+#include <opencv2/highgui.hpp>
+#include <opencv2/calib3d.hpp> 
+
+
+# get the right apriltags.launch from odroid that uses bigger tags  nd get the 16h5ps also
+# change the topic and camera_info in the launch file
+roslaunch apriltags apriltags.launch
+
+
+#
+#
+
+
+
+
+related_files to check 
+# mavros and mocap
+px4_mocap.launch
+px4flow.launch
+stamped_tf.cpp
+mocap_fake_gps.cpp
+px4_mocap_pluginlist.yaml
+px4_mocap_config.yaml
+
+mocap.yaml
+mocap.launch 
+
+#flea3
+single_node.launch
+Flea3Dyn.cfg
+
+#apriltag

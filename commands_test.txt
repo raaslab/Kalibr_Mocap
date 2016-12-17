@@ -36,6 +36,7 @@ git remote set-url origin http://"local raaslab repo address after fork"
 # adding submodules
 
 
+git submodule add https://github.com/raaslab/mocap_optitrack.git ./src/mocap_optitrack/
 
 
 
