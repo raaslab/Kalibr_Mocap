@@ -1,0 +1,21 @@
+[submodule "src/apriltags"]
+	path = src/apriltags
+	url = https://github.com/raaslab/apriltags.git
+[submodule "src/apriltags-cpp"]
+	path = src/apriltags-cpp
+	url = https://github.com/raaslab/apriltags-cpp.git
+[submodule "src/camera_base"]
+	path = src/camera_base
+	url = https://github.com/raaslab/camera_base.git
+[submodule "src/mavros"]
+	path = src/mavros
+	url = https://github.com/raaslab/mavros.git
+[submodule "src/flea3"]
+	path = src/flea3
+	url = https://github.com/raaslab/flea3.git
+[submodule "src/mocap_optitrack"]
+	path = src/mocap_optitrack
+	url = https://github.com/raaslab/mocap_optitrack.git
+[submodule "src/tf_stamped"]
+	path = src/tf_stamped
+	url = https://github.com/raaslab/publish_stampedtransform.git

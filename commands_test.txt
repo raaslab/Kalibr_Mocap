@@ -1,0 +1,59 @@
+
+
+#forked apriltags and apriltags-cpp to raaslab
+git remote set-url origin https://github.com/raaslab/apriltags.git
+
+cd ./apriltags-cpp
+git init 
+git add -v *
+git add .gitignore
+git commit -m "my work has one change from remote"
+git remote add origin https://github.com/raaslab/apriltags-cpp.git
+git pull (merge conflict)
+git mergetool CMakeLists.txt    (used beyondcompare)
+git mergetool include/Geometry.h
+git commit -m "merged and kept local"
+git push -u origin master 
+
+git clean -n (remove untracked file use -f for actual remove)
+
+
+# extra irrelevant commands
+#apt-file search bcompare
+#whereis bcompare
+#git config --global merge.tool bc
+#git config --global mergetool.bc.path ""
+#p4merge is a good mergetool
+git config --global diff.tool bc
+git config --global difftool.bc.path "/usr/bin/bcompare"
+
+git difftool  11f59540ce65b1070ba5639b029e205d556e1ae6 daaa26ba6d45698a521bd1de56a41eab9dc25aeb
+
+
+# git pull camera_base, flea3, mocap_optitrack,  and forked in raaslab
+git remote set-url origin http://"local raaslab repo address after fork"
+
+# adding submodules
+
+
+
+
+
+
+
+
+
+
+
+
+
+echo "# fdgd" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/ashish-kb/fdgd.git
+git push -u origin master
+…or push an existing repository from the command line
+
+git remote add origin https://github.com/ashish-kb/fdgd.git
+git push -u origin master
