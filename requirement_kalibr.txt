@@ -72,3 +72,23 @@ single_node.launch
 Flea3Dyn.cfg
 
 #apriltag
+
+
+These packages will work in 16.04 and not in 14.04
+1. Packages required to run mocap_optitrack, mavros, mavros_extras(that has fake GPS), tf_stamped. From https://github.com/raaslab/Kalibr_Mocap.git . If you feel you already have these packages then please use 'beyond compare' to do a folder compare and figure out which are my important changes(I have mentioned a few at bottom)
+
+2. Go to optitrack software and start motive.  I would suggest to use one of my settings file becauseI have changed a few important settings. You can do 'open project' from the initial dialog and then choose one of the recently modified 5N_*.ttp project files. You would have to create your new rigid object in this case. Make sure you delete the existing ones before making a new one. Another this to keep in mind is, if you have more than 1 rigid body, make sure rigid body 1 is the quadcopter. 
+* 
+3. You would have to go in 'data streaming'. You need to select ''(local IP) and then you need to change remote IP. Remote Ip is your computers IP(the computer that is running ROS) on raaslab network. Use 'return' key after selecting your IP in the text box, this activates the setting. Note: I think remote IP is called broadcast computer in motive. 
+
+4. Then use the launch file src/launch/apr_mocap_flea_mav_stamp.launch from https://github.com/raaslab/Kalibr_Mocap.git. And remove the unneccesary apriltag, flea3 and Kalibr related stuff. Just keep the nodes mentioned in step 1. 
+
+5. Discussion about the changes I had to make and what all nodes are doing:
+* mavros and mavros_extras: this is required to receive data from pixhawk and run fake gps node. mavros node runnig at ttyUSB0 using at 921600(U can change the port to something else on pixhawk that supports serial). It uses /launch/px4_mocap_pluginlist.yaml and launch/px4_mocap_config.yaml. Please have a look at these and compare with default. This mavros_extras has a fake_gps.cpp that needed minimal but important changes. 
+* mocap_optitrack: this is used to receive streamed data over wifi. This also needed some source code change to allow for multiple rigid bodies. Use beyond compare to check which file/s. 
+* tf_stamped: this subscribes to mocap_optitrack and converts the pose data to tfstamped data that is required by fake_gps.cpp in mavros_extras. This is just a bookkeeping node that is needed. 
+
+
+
+
+
