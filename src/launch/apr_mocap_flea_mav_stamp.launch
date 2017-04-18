@@ -85,6 +85,7 @@
 	</node>
 	</group>
 
+		
 	<!-- vim: set ft=xml noet : -->
 	<!-- example launch script for PX4 based FCU's -->
 
@@ -95,8 +96,8 @@
 	<arg name="log_output" default="screen" />
 
 	<include file="$(find mavros)/launch/node.launch">
-		<arg name="pluginlists_yaml" value="$(find mavros_extras)/launch/px4_mocap_pluginlist.yaml" />
-		<arg name="config_yaml" value="$(find mavros_extras)/launch/px4_mocap_config.yaml" />
+		<arg name="pluginlists_yaml" value="$(find mavros)/launch/px4_pluginlists.yaml" />
+		<arg name="config_yaml" value="$(find mavros)/launch/px4_config.yaml" />
 
 		<arg name="fcu_url" value="$(arg fcu_url)" />
 		<arg name="gcs_url" value="$(arg gcs_url)" />
@@ -108,9 +109,9 @@
 	<!-- 
 	Start an apriltag node using the default settings
 	to connect to an OpenNI device (e.g. Kinect). 
-	-->
+     small tag "0.1621"	-->
 	<node pkg="apriltags" type="apriltags" name="apriltags" required="true">
-		<param name="~default_tag_size" value="0.1621" />
+		<param name="~default_tag_size" value="0.4125" />
 
 		<param name="~viewer" value="false" />
 		<param name="~publish_detections_image" value="false" />
@@ -130,7 +131,7 @@
 	<arg name="mocap_config_file"
 	   default="$(find mocap_optitrack)/config/mocap.yaml" />
 
-	<node pkg="mocap_optitrack"
+	<!--node pkg="mocap_optitrack"
 		type="mocap_node"
 		name="mocap_node"
 		respawn="false"
@@ -138,7 +139,7 @@
 		required="true"
 		output="screen">
 	<rosparam file="$(arg mocap_config_file)" command="load" />
-	</node>
+	</node-->
 	
 	
 	<node pkg="tf_stamped"
