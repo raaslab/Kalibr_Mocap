@@ -39,6 +39,9 @@ roslaunch flea3 single_node.launch device:=15291221
 #  details given here https://github.com/personalrobotics/apriltags/issues/28
 # installed libcgal-qt5-dev was giving some error otherwise
 # pkg_search_module(OPENCV REQUIRED opencv>=2.3 opencv-2.3.1 opencv-3.1.0-dev)
+# check if the opencv has changed in /opt/kinetic/lib/pkgconfig/opencv-3.2.0-dev.pc
+# needed to install mavlink and control-toolbox ros packages
+# remember to change the camera id if using a new camera
 #gedit ../src/Geometry.cpp and #include <map>
 #include <opencv2/highgui.hpp>
 #include <opencv2/calib3d.hpp> 
