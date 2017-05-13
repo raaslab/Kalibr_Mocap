@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- Andrew Peekema -->
+
+<launch>
+	
+	<arg name="use_sim_time" default="true"/>
+	<!-- set use_sim_time flag -->
+	<group if="$(arg use_sim_time)">
+		<param name="/use_sim_time" value="true" />
+	</group>
+
+
+	<node name="tf_bcast" pkg="april_odom_tf" type="tf_bcast" output="screen" required="true"/>
+
+</launch>
