@@ -91,7 +91,7 @@ These packages will work in 16.04 and not in 14.04
 * mocap_optitrack: this is used to receive streamed data over wifi. This also needed some source code change to allow for multiple rigid bodies. Use beyond compare to check which file/s. 
 * tf_stamped: this subscribes to mocap_optitrack and converts the pose data to tfstamped data that is required by fake_gps.cpp in mavros_extras. This is just a bookkeeping node that is needed. 
 
-
+6. We need to configure pixhawk to accept the mocap data see this tutorial - search_google("px4.io fake_gps") change ATT_EXT_HDG_M = 2 and MAV_USEHILGPS. Also don't forget to remove the normal GPS.
 
 
 
